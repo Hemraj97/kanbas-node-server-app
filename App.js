@@ -1,7 +1,6 @@
 import express from "express";
 import session from "express-session";
 import Hello from "./Hello.js";
-import morgan from "morgan";
 import Lab5 from "./lab5.js";
 import dotenv from 'dotenv';
 import CourseRoutes from "./Kanbas/Courses/routes.js";
@@ -22,13 +21,15 @@ mongoose.connect(process.env.MONGO)
   });
 
   const app = express();
-  app.use(express.json());
+
 
   app.use(cors({
     credentials: true,
     origin: process.env.FRONTEND_URL
     }
     ));
+
+ app.use(express.json());
 
 const sessionOptions = {
     secret: process.env.SESSION_SECRET,
@@ -53,12 +54,10 @@ const sessionOptions = {
     cookie: {
     sameSite: "none",
     secure: true,
-    domain: "kanbas-server-app-2.onrender.com",
+    domain: process.env.HTTP_SERVER_DOMAIN,
     },})
     );
-  
-   
-app.use(express.json());
+
 AssignmentRoutes(app);
 ModuleRoutes(app);
 CourseRoutes(app);

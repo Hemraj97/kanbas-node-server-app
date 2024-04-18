@@ -2,7 +2,7 @@ import model from "./model.js";
 export const createUser = (user) => {
   delete user._id;
   const newUser = model.create(user);
-  console.log("new_user "+newUser);
+  console.log("new_user "+JSON.stringify(newUser));
   return newUser;
 };
 export const findAllUsers = () => model.find();
