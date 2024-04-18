@@ -40,19 +40,7 @@ const sessionOptions = {
       domain: process.env.HTTP_SERVER_DOMAIN,
     };
   }
-  app.use(
-    session({
-        secret: "keyboard cat",
-        resave: false,
-        saveUninitialized: false,
-        proxy: true,
-        cookie: {
-        sameSite: "none",
-        secure: true,
-        domain: process.env.HTTP_SERVER_DOMAIN,
-    },
-    })
-    );
+  app.use(session(sessionOptions));
 
 
 AssignmentRoutes(app);
